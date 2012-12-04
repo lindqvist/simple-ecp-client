@@ -160,15 +160,23 @@ public class PaosClient {
 				// response.
 				content.setResponseParts(MessageParser.parseMessage(response));
 
-				// Check if the response contains a cookie.
-				if (clientExchange.getResponseFields() != null)
-					cookieField = clientExchange.getResponseFields()
-							.getStringField("Set-Cookie");
+                        // Check if the response contains any headers.
+			if (clientExchange.getResponseFields() != null) {
+
+				// Save all the response headers (in order to get the
+				// Authorization header from the SP when logged in.
+				content.setHeaders(clientExchange.getResponseFields());
+
+				// Get the cookie field.
+				cookieField = clientExchange.getResponseFields()
+						.getStringField("Set-Cookie");
 
 				// Save the session cookie (from the SP).
-				if (cookieField.isEmpty() == false)
-					content.setCookieField(cookieField);
-
+				if (cookieField != null) {
+					if (cookieField.isEmpty() == false)
+						content.setCookieField(cookieField);
+				}
+			}
 			} else {
 				System.out.println("No SOAP Envelope received as response.");
 			}
