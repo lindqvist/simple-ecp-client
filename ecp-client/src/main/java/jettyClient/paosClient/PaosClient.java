@@ -165,7 +165,7 @@ public class PaosClient {
 
 				// Save all the response headers (in order to get the
 				// Authorization header from the SP when logged in.
-				content.setHeaders(clientExchange.getResponseFields());
+				//content.setHeaders(clientExchange.getResponseFields());
 
 				// Get the cookie field.
 				cookieField = clientExchange.getResponseFields()
