@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+<!-- Log root logger messages to a file (OpenSAML, Java, Jetty ...)
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+	<file>logfile.log</file>
+	<append>true</append>
+	<encoder>
+            <pattern>%-4relative [%thread] %-2level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+ -->
+
+<!-- Log Servlet logger messages to a file -->
+  <appender name="CLIENT" class="ch.qos.logback.core.FileAppender">
+	<file>clientLog.log</file>
+	<append>true</append>
+	<encoder>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+<!-- Set the root logger to point to the FILE configured above (root logs opensaml) 
+    <root>
+        <appender-ref ref="FILE"/>
+	<level value="INFO"/>
+    </root>
+-->
+
+<!-- Create another logger -->
+    <logger name="defaultLogger">
+	<level value="DEBUG"/>
+	<appender-ref ref= "CLIENT"/>	
+    </logger>
+
+</configuration>
