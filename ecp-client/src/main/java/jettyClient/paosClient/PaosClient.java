@@ -87,6 +87,9 @@ public class PaosClient {
 
 		// Create a new POST exchange.
 		ClientExchange clientExchange = getPOSTExchange(endpoint);
+		
+		// BRL 2013 -- needs to be the PAOS type
+                clientExchange.addRequestHeader("Content-Type", "application/vnd.paos+xml");
 
 		// Fill POSTexchange with the envelope.
 		Element envelopeElement = ParseHelper.marshall(content
